@@ -49,7 +49,12 @@ namespace programowanie_wizualne_lab11_gra_karciana
                 Width = 200,
                 Location = new Point(10, 350)
             };
+            start.Click += new EventHandler(StartButtonHandler);
             this.Controls.Add(start);
+        }
+        private void StartButtonHandler(object sender, EventArgs e)
+        {
+
         }
     }
 }
