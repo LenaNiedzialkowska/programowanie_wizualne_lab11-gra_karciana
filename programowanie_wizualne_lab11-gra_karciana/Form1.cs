@@ -44,7 +44,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
             wojna1 = new RadioButton
             {
                 Text = "WOJNA I",
-                Font = new Font("Segoe UI", 20),
+                Font = new Font("Segoe UI", 15),
                 Height = 50,
                 Width = 200,
                 Location = new Point(10, 50)
@@ -54,7 +54,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
             wojna2 = new RadioButton
             {
                 Text = "WOJNA II",
-                Font = new Font("Segoe UI", 20),
+                Font = new Font("Segoe UI", 15),
                 Height = 50,
                 Width = 200,
                 Location = new Point(10, 150)
@@ -64,7 +64,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
             oczko = new RadioButton
             {
                 Text = "OCZKO",
-                Font = new Font("Segoe UI", 20),
+                Font = new Font("Segoe UI", 15),
                 Height = 50,
                 Width = 200,
                 Location = new Point(10, 250)
@@ -74,8 +74,8 @@ namespace programowanie_wizualne_lab11_gra_karciana
             start = new Button
             {
                 Text = "START",
-                Font = new Font("Segoe UI", 20),
-                Height = 50,
+                Font = new Font("Segoe UI", 15),
+                Height = 80,
                 Width = 200,
                 Location = new Point(10, 350)
             };
@@ -182,8 +182,8 @@ namespace programowanie_wizualne_lab11_gra_karciana
                     BackColor = Color.White,
                     Dock = DockStyle.Top,
                     Text = "0",
-                    Font = new Font("Segoe UI", 20),
-                    Height = 50,
+                    Font = new Font("Segoe UI", 15),
+                    Height = 80,
                     Width = 600
                 };
                 panel1.Controls.Add(score);
@@ -194,8 +194,8 @@ namespace programowanie_wizualne_lab11_gra_karciana
                     Dock = DockStyle.Top,
                     Text = "SPRAWDZ",
                     Font = new Font("Segoe UI", 15),
-                    Height = 40,
-                    Width = 30
+                    Height = 70,
+                    Width = 30,
                 };
                 check.Click += new EventHandler(CheckButtonHandler);
                 panel1.Controls.Add(check);
@@ -652,6 +652,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
                     wynikGracza.Text = "Wynik Gracza: \n" + wynikG.ToString();
                     kartaBota.Text = "";
                     kartaGracza.Text = "";
+                    gamePanel.Hide();
                     return;
                 }
                 else if (wynikB > wynikG)
@@ -664,6 +665,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
                     wynikGracza.Text = "Wynik Gracza: \n" + wynikG.ToString();
                     kartaBota.Text = "";
                     kartaGracza.Text = "";
+                    gamePanel.Hide();
                     return;
                 }
                 else
@@ -676,6 +678,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
                     wynikGracza.Text = "Wynik Gracza: \n" + wynikG.ToString();
                     kartaBota.Text = "";
                     kartaGracza.Text = "";
+                    gamePanel.Hide();
                     return;
                 }
             }
@@ -1055,14 +1058,17 @@ namespace programowanie_wizualne_lab11_gra_karciana
                 if (Gracz > Bot)
                 {
                     MessageBox.Show("Wygrales!");
+                    ControlPanel.Hide();
                 }
                 else if (Bot > Gracz)
                 {
                     MessageBox.Show("Przegrales!");
+                    ControlPanel.Hide();
                 }
                 else
                 {
                     MessageBox.Show("Remis!");
+                    ControlPanel.Hide();
                 }
 
             }
@@ -1134,7 +1140,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
                 Label label = new Label
                 {
                     Image = Image.FromFile(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\karta.png"),
-                    Font = new Font("Segoe UI", 20),
+                    Font = new Font("Segoe UI", 15),
                     Dock = DockStyle.Left,
                     Height = 170,
                     Width = 160
