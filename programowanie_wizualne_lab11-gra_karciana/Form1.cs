@@ -104,15 +104,103 @@ namespace programowanie_wizualne_lab11_gra_karciana
                 Wynik_bota.Font = new Font("Arial", 20);
                 ControlPanel.Controls.Add(Wynik_bota);
 
-                Numer_gracza.Image = Image.FromFile("karta.png");
-                Numer_bota.Image = Image.FromFile("karta.png");
+                Numer_gracza.Image = Image.FromFile(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\karta.png");
+                Numer_bota.Image = Image.FromFile(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\karta.png");
 
                 Next.Location = new Point(600, 200);
                 Next.Text = "KOLEJNA";
-                Next.Font = new Font("Arial", 15);
+                Next.Font = new Font("Arial", 10);
                 Next.Size = new Size(108, 51);
                 Next.Click += new EventHandler(Dobierz);
                 this.Controls.Add(Next);
+            }
+            if (oczko.Checked == true)
+            {
+                foreach (var radioBtn in Controls.OfType<RadioButton>())
+                    radioBtn.Hide();
+                foreach (var btn in Controls.OfType<Button>())
+                    btn.Hide();
+
+                TableLayoutPanel panel = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = Color.White,
+                    ColumnCount = 1,
+                    RowCount = 3
+                };
+                this.Controls.Add(panel);
+
+                RowStyle row1 = new RowStyle
+                {
+                    SizeType = SizeType.Absolute,
+                    Height = 50
+                };
+                panel.RowStyles.Add(row1);
+
+                RowStyle row2 = new RowStyle
+                {
+                    SizeType = SizeType.Absolute,
+                    Height = 200
+                };
+                panel.RowStyles.Add(row2);
+
+                RowStyle row3 = new RowStyle
+                {
+                    SizeType = SizeType.AutoSize
+                };
+                panel.RowStyles.Add(row3);
+
+                TableLayoutPanel panel1 = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = Color.White,
+                    ColumnCount = 2,
+                    RowCount = 1
+                };
+                panel.Controls.Add(panel1);
+
+                score = new Label
+                {
+                    BackColor = Color.White,
+                    Dock = DockStyle.Top,
+                    Text = "0",
+                    Font = new Font("Segoe UI", 20),
+                    Height = 50,
+                    Width = 600
+                };
+                panel1.Controls.Add(score);
+
+                check = new Button
+                {
+                    BackColor = Color.LightGray,
+                    Dock = DockStyle.Top,
+                    Text = "SPRAWDZ",
+                    Font = new Font("Segoe UI", 15),
+                    Height = 40,
+                    Width = 30
+                };
+                check.Click += new EventHandler(CheckButtonHandler);
+                panel1.Controls.Add(check);
+
+                Button draw = new Button
+                {
+                    BackColor = Color.White,
+                    Dock = DockStyle.Right,
+                    Image = Image.FromFile(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\karta.png"),
+                    Height = 200,
+                    Width = 120
+                };
+                draw.Click += new EventHandler(DrawButtonHandler);
+                panel.Controls.Add(draw, 0, 1);
+
+                panel2 = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = Color.Beige,
+                    ColumnCount = 5,
+                    RowCount = 2
+                };
+                panel.Controls.Add(panel2);
             }
         }
 
@@ -479,7 +567,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
 
             if (list.Count == 52)
             {
-                MessageBox.Show("Wykorzystano ca³¹ taliê!");
+                MessageBox.Show("Wykorzystano cala talie!");
                 list.Clear();
                 Numer_gracza.Text = "";
                 Numer_bota.Text = "";
@@ -489,104 +577,17 @@ namespace programowanie_wizualne_lab11_gra_karciana
                 Bot = Convert.ToInt32(Wynik_bota.Text);
                 if (Gracz > Bot)
                 {
-                    MessageBox.Show("Wygra³eœ!");
+                    MessageBox.Show("Wygrales!");
                 }
                 else if (Bot > Gracz)
                 {
-                    MessageBox.Show("Przegra³eœ!");
+                    MessageBox.Show("Przegrales!");
                 }
                 else
                 {
                     MessageBox.Show("Remis!");
                 }
 
-            if (oczko.Checked == true)
-            {
-                foreach (var radioBtn in Controls.OfType<RadioButton>())
-                    radioBtn.Hide();
-                foreach (var btn in Controls.OfType<Button>())
-                    btn.Hide();
-
-                TableLayoutPanel panel = new TableLayoutPanel
-                {
-                    Dock = DockStyle.Fill,
-                    BackColor = Color.White,
-                    ColumnCount = 1,
-                    RowCount = 3
-                };
-                this.Controls.Add(panel);
-
-                RowStyle row1 = new RowStyle
-                {
-                    SizeType = SizeType.Absolute,
-                    Height = 50
-                };
-                panel.RowStyles.Add(row1);
-
-                RowStyle row2 = new RowStyle
-                {
-                    SizeType = SizeType.Absolute,
-                    Height = 200
-                };
-                panel.RowStyles.Add(row2);
-
-                RowStyle row3 = new RowStyle
-                {
-                    SizeType = SizeType.AutoSize
-                };
-                panel.RowStyles.Add(row3);
-
-                TableLayoutPanel panel1 = new TableLayoutPanel
-                {
-                    Dock = DockStyle.Fill,
-                    BackColor = Color.White,
-                    ColumnCount = 2,
-                    RowCount = 1
-                };
-                panel.Controls.Add(panel1);
-
-                score = new Label
-                {
-                    BackColor = Color.White,
-                    Dock = DockStyle.Top,
-                    Text = "0",
-                    Font = new Font("Segoe UI", 20),
-                    Height = 50,
-                    Width = 600
-                };
-                panel1.Controls.Add(score);
-
-                check = new Button
-                {
-                    BackColor = Color.LightGray,
-                    Dock = DockStyle.Top,
-                    Text = "SPRAWD",
-                    Font = new Font("Segoe UI", 15),
-                    Height = 40,
-                    Width = 30
-                };
-                check.Click += new EventHandler(CheckButtonHandler);
-                panel1.Controls.Add(check);
-
-                Button draw = new Button
-                {
-                    BackColor = Color.White,
-                    Dock = DockStyle.Right,
-                    Image = Image.FromFile(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\karta.png"),
-                    Height = 200,
-                    Width = 120
-                };
-                draw.Click += new EventHandler(DrawButtonHandler);
-                panel.Controls.Add(draw, 0, 1);
-
-                panel2 = new TableLayoutPanel
-                {
-                    Dock = DockStyle.Fill,
-                    BackColor = Color.Beige,
-                    ColumnCount = 5,
-                    RowCount = 2
-                };
-                panel.Controls.Add(panel2);
             }
         }
         private void DrawButtonHandler(object sender, EventArgs e)
@@ -648,7 +649,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
 
             if (IsScoreOk() == false)
             {
-                MessageBox.Show("Przeciwnik skoñczy³ ju¿ runde", "Zamknij okno");
+                MessageBox.Show("Przeciwnik skonczyl juz runde", "Zamknij okno");
                 CheckButtonHandler(sender, e);
             }
             else
@@ -678,7 +679,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
             string message;
             if ((sumOfPoints > 21 || sumOfPoints < sumOfOpponentPoints) && sumOfOpponentPoints <= 21)
             {
-                message = "Przegra³eœ\nCzy chcesz zagraæ jeszcze raz?";
+                message = "Przegrales\nCzy chcesz zagrac jeszcze raz?";
             }
             else if (sumOfPoints == sumOfOpponentPoints)
             {
@@ -686,7 +687,7 @@ namespace programowanie_wizualne_lab11_gra_karciana
             }
             else
             {
-                message = "Wygra³eœ\nCzy chcesz zagraæ jeszcze raz?";
+                message = "Wygrales\nCzy chcesz zagrac jeszcze raz?";
             }
             string title = "Zamknij okno";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
