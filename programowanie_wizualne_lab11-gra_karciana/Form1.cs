@@ -192,8 +192,9 @@ namespace programowanie_wizualne_lab11_gra_karciana
                 {
                     BackColor = Color.LightGray,
                     Dock = DockStyle.Top,
-                    Text = "SPRAWDZ",
+                    Text = "SPRAWDZ",
                     Font = new Font("Segoe UI", 15),
+                    TextAlign = ContentAlignment.TopCenter,
                     Height = 70,
                     Width = 30,
                 };
